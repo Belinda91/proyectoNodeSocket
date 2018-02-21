@@ -1,19 +1,38 @@
-var express = require('express'),
-    app = express(),
-    server = require('http').createServer(app),
-    sanitizer = require('sanitizer'),
-    io = require('socket.io').listen(server, {
-        'log level' : 2
-    }),
-    formidable = require('formidable'),
-    path = require('path'),
-    fs = require('fs'),
-    mediaserver = require('mediaserver'),
-    multer = require('multer');
+//var express = require('express'),
+//    app = express(),
+//    server = require('http').createServer(app),
+//    sanitizer = require('sanitizer'),
+//    io = require('socket.io').listen(server, {
+//        'log level' : 2
+//    }),
+//    formidable = require('formidable'),
+//    path = require('path'),
+//    fs = require('fs'),
+//    mediaserver = require('mediaserver'),
+//    multer = require('multer');
+//
+//server.listen(3001);
+//
+//app.use(express.static(__dirname + '/public'));
 
-server.listen(3001);
+const path = require('path');
+const http = require('http'.createServer(app));
+const express = require('express');
+const socketIO = require('socket.io');
+const sanitizer = require('sanitizer');
+const formidable = require('formidable');
+const fs = require('fs');
+const mediaserver = require('mediaserver');
+const multer = require('multer');
 
-app.use(express.static(__dirname + '/public'));
+
+const publicPath = path.join(__dirname, './public');
+const port = process.env.PORT || 3000;
+var app = express();
+var server = http.createServer(app);
+var io = socketIO(server);
+
+app.use(express.static(publicPath));
 
 app.get('/public', function (req, res) {
     res.sendfile(__dirname + '/index.html');
