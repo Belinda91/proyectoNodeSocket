@@ -11,7 +11,7 @@ var express = require('express'),
     mediaserver = require('mediaserver'),
     multer = require('multer');
 
-server.listen(3001);
+server.listen(process.env.PORT || 3001);
 
 app.use(express.static(__dirname + '/app/public'));
 
