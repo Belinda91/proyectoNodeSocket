@@ -16,7 +16,7 @@ server.listen(3001);
 app.use(express.static(__dirname + 'public'));
 
 app.get('/public', function (req, res) {
-    res.sendfile(__dirname + '/index.html');
+    res.sendfile(__dirname + '/public/index.html');
 });
 
 var usuarios = []; //Array con los nombres de usuarios.
