@@ -11,12 +11,13 @@ var express = require('express'),
     mediaserver = require('mediaserver'),
     multer = require('multer');
 
-server.listen(process.env.PORT || 3001);
+const port = process.env.PORT || 3000;
+server.listen(port);
 
-app.use(express.static(__dirname + '/app/public'));
+app.use(express.static(__dirname + '/public'));
 
 app.get('/public', function (req, res) {
-    res.sendfile(__dirname + '/app/public/index.html');
+    res.sendfile(__dirname + '/public/index.html');
 });
 
 var usuarios = []; //Array con los nombres de usuarios.
